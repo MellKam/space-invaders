@@ -1,0 +1,20 @@
+{
+	"type": "module",
+	"scripts": {
+		"dev": "vite"
+	},
+	"devDependencies": {
+		"@types/stats.js": "^0.17.3",
+		"@types/three": "0.164.0",
+		"autoprefixer": "10.4.19",
+		"postcss": "8.4.38",
+		"prettier": "3.2.5",
+		"prettier-plugin-tailwindcss": "0.5.14",
+		"solid-js": "1.8.17",
+		"tailwindcss": "3.4.3",
+		"three": "0.164.1",
+		"vite": "5.2.11",
+		"vite-plugin-solid": "2.10.2",
+		"stats.js": "^0.17.0"
+	}
+}
