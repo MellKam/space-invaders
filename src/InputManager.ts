@@ -1,4 +1,13 @@
 export class InputManager {
+	private static instance: InputManager;
+	public static getInstance(): InputManager {
+		if (!InputManager.instance) {
+			InputManager.instance = new InputManager();
+		}
+		return InputManager.instance;
+	}
+
+	private _isMouseDown = false;
 	private keyDownMap = new Map<string, boolean>();
 
 	private keyDownListener(event: KeyboardEvent) {
@@ -6,20 +15,30 @@ export class InputManager {
 		event.stopPropagation();
 		this.keyDownMap.set(event.key, true);
 	}
+
 	private keyUpListener(event: KeyboardEvent) {
 		event.preventDefault();
 		event.stopPropagation();
 		this.keyDownMap.set(event.key, false);
 	}
 
-	constructor() {
-		document.addEventListener("keydown", this.keyDownListener.bind(this));
-		document.addEventListener("keyup", this.keyUpListener.bind(this));
+	private mouseDownListener(event: MouseEvent) {
+		event.preventDefault();
+		event.stopPropagation();
+		this._isMouseDown = true;
 	}
 
-	public dispose(): void {
-		document.removeEventListener("keydown", this.keyDownListener);
-		document.removeEventListener("keyup", this.keyUpListener);
+	private mouseUpListener(event: MouseEvent) {
+		event.preventDefault();
+		event.stopPropagation();
+		this._isMouseDown = false;
+	}
+
+	private constructor() {
+		document.addEventListener("keydown", this.keyDownListener.bind(this));
+		document.addEventListener("keyup", this.keyUpListener.bind(this));
+		document.addEventListener("mousedown", this.mouseDownListener.bind(this));
+		document.addEventListener("mouseup", this.mouseUpListener.bind(this));
 	}
 
 	public isKeyDown(key: string): boolean {
@@ -28,5 +47,9 @@ export class InputManager {
 
 	public isKeyUp(key: string): boolean {
 		return this.keyDownMap.get(key) !== true;
+	}
+
+	public isMouseDown(): boolean {
+		return this._isMouseDown;
 	}
 }

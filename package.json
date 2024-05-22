@@ -1,7 +1,9 @@
 {
 	"type": "module",
 	"scripts": {
-		"dev": "vite"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
 	"devDependencies": {
 		"@types/stats.js": "^0.17.3",
