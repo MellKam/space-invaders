@@ -13,8 +13,8 @@ export class InputManager {
 	}
 
 	constructor() {
-		document.addEventListener("keydown", this.keyDownListener);
-		document.addEventListener("keyup", this.keyUpListener);
+		document.addEventListener("keydown", this.keyDownListener.bind(this));
+		document.addEventListener("keyup", this.keyUpListener.bind(this));
 	}
 
 	public dispose(): void {
