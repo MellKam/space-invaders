@@ -2,6 +2,7 @@ import { Mesh, MeshStandardMaterial } from "three";
 import type { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 export interface Alien {
+	type: AlienType;
 	mesh: Mesh;
 }
 
@@ -37,5 +38,5 @@ export async function createAlien(
 	model.castShadow = true;
 	model.receiveShadow = true;
 
-	return { mesh: model };
+	return { mesh: model, type: alienType };
 }

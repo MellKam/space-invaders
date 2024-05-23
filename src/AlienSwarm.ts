@@ -64,3 +64,17 @@ export function updateAlienSwarm(
 
 	return swarm;
 }
+
+function generateRandomInteger(min = 0, max = 1) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function createRandomAlienSwarm(
+	gltfLoader: GLTFLoader,
+): Promise<AlienSwarm> {
+	const rows = generateRandomInteger(3, 8);
+	const columns = generateRandomInteger(3, 8);
+	const alienType = Math.random() > 0.5 ? "alien_0" : "alien_1";
+
+	return createAlienSwarm(rows, columns, gltfLoader, alienType);
+}
